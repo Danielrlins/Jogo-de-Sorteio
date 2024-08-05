@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteando</title>
+</head>
+<style>
+    body{
+        background-image: linear-gradient(to right,white, green);
+    }
+    header{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+
+    text-align: center;
+    }
+    section{
+    margin: auto;
+    background-color: white;
+    width:630px ;
+    font-size:25px ;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 10px;
+    border-radius:20px ;
+    box-shadow:2px 2px 2px black ;
+    }
+    #normal p {
+        padding-left: 5px;
+    }
+    #res p{
+        
+        padding-left: 5px;
+    }
+    #res{
+        text-align: center;
+    }
+    #sel{
+        width: 150px;
+    }
+    #res > img:hover {
+        border: 2px solid white;
+        transform: translate(-3px,-3px); /* elevação dos itens para a direita (animação) */
+        transition: transform 2s; /* animção dos itens demorando 2 segundos */
+        box-shadow: 5px 5px 10px black;
+    }
+</style>
+<body>
+    <header><h1>Sorteando</h1></header>
+    <section>
+        <div id="normal">
+            <p>Digite um numero para jogar:(1 a 10) <input type="number" id="num"> <input type="submit" value="Validar" onclick="validar()"></p>
+        </div>
+        <div id="res">
+            <img src="" alt="" id="img">
+        </div>
+    </section>
+    <script>
+       
+        function validar() {
+            var res = document.getElementById('res')
+            var num = document.getElementById('num')
+            var foto = document.getElementById('img')
+            var min = 1
+            var max = 10
+            var n = Number(num.value)
+            let numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;
+            if (num.value.length == 0 || n > 10 ){
+                window.alert('Digite um numero certo!')
+            }
+            else {
+                if(n == numeroAleatorio) {
+                 foto.setAttribute('src','winner.gif')
+                 var r = `<p> ACERTOU! <\p>`
+            }
+            if (n != numeroAleatorio) {
+                foto.setAttribute('src','lost.gif')
+                var r= `<p> ERROU <\p> <p> O numero certo era: ${numeroAleatorio} <\p>`
+                
+            }
+            }
+            /*num.value = ''
+            num.focus() */
+            res.innerHTML = r
+            res.appendChild(foto)
+        }
+        
+    </script>
+</body>
+</html>
